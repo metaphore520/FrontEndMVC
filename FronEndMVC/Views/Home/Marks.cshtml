@@ -1,0 +1,99 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FronEndMVC.Models.MarkVM
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="MarkDataEntryForm" method="post">
+                        <div class="row">
+
+                            <div class="col-md-3">
+                                <h5>Select student</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="StudentId" asp-for="StudentId" asp-items="@ViewBag.AllStudent"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <h5>Select Course</h5>
+                            </div>
+                            <div class="col-md-3">
+                                <select class="form-control" name="CourseId" asp-for="CourseId" asp-items="@ViewBag.AllCourse"></select>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label for="Name"><h5>Mark:</h5></label>
+                            </div>
+                            <div class="col-md-3">
+                                <input class="form-control" id="MarkName" asp-for="Mark1" type="text" name="Mark1" required />
+                            </div><div class="col-md-3">
+                                <span id="MarkNameLabel"> </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <input class="form-control" type="submit" value="Add Mark" asp-action="AddMark" asp-controller="Home">
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-5">
+                                <h1>Mark Sheet</h1>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <table class="table table-striped">
+                                    <thead>
+                                    <th>Student</th>
+                                    <th>Courses</th>
+                                    <th>Max Score</th>
+                                    <th>Average Score</th>
+
+                                    </thead>
+                                    <tbody id="address_tablebody">
+
+                                        @foreach (var item in @ViewBag.MarkSheet)
+                                        {
+                                            <tr>
+                                                <td>
+                                                    <h4>@item.StudentName</h4>
+                                                </td>
+                                                <td>
+                                                    @{
+                                                        int i = 0;
+                                                        foreach (var course in @item.Courses)
+                                                        {
+                                                            <h4>
+                                                                #. @course.ToString()
+                                                            </h4>
+
+                                                        }
+                                                    }
+                                                </td>
+                                                <td>
+                                                    <h4>@item.MaxMark</h4>
+                                                </td>
+                                                <td>
+                                                    <h4>@item.AverageMark</h4>
+                                                </td>
+                                            </tr>
+                                        }
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

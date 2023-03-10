@@ -1,0 +1,59 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FronEndMVC.Models.Course
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="courseDataEntryForm" method="post">
+
+                        <div class="row">
+                            <div class="col-md-4">
+                                <label class="form-control" for="Name">COURSE NAME:</label>
+                            </div>
+                            <div class="col-md-4">
+                                <input class="form-control" id="CourseName" asp-for="Name" type="text" name="Name" required />
+                            </div>
+                            <span id="CourseNameLabel"> </span>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="form-control" type="submit" value="Add Course" asp-action="AddCourse" asp-controller="Home">
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <th>Name</th>
+
+                                </thead>
+                                <tbody id="address_tablebody">
+
+                                    @foreach (var item in @ViewBag.Courses)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h4>@item.Name</h4>
+                                            </td>
+                                            <td>
+                                                @Html.ActionLink("Edit", "EditCourse", "Home", new { id = item.Id,name = item.Name }, null);
+
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

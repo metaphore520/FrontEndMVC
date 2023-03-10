@@ -1,0 +1,60 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+@model FronEndMVC.Models.Student
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-12">
+                    <form id="studentDataEntryForm" method="post">
+                        <div class="row">
+                            <div class="col-md-3">
+                                <label class="form-control" for="Name">STUDENT NAME:</label>
+                            </div>
+                            <div class="col-md-3">
+                                <input class="form-control" id="StudentName" asp-for="Name" type="text" name="Name" required />
+                            </div>
+                            <div class="col-md-3">
+                                <span id="StudentNameLabel"> </span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-3">
+                                <input class="form-control" type="submit" value="Add Student" asp-action="AddStudent" asp-controller="Home">
+                            </div>
+                        </div>
+
+
+                        <div>
+                            <table class="table table-striped">
+                                <thead>
+                                <th>Name</th>
+
+                                </thead>
+                                <tbody id="address_tablebody">
+
+                                    @foreach (var item in @ViewBag.Students)
+                                    {
+                                        <tr>
+                                            <td>
+                                                <h4>@item.Name</h4>
+                                            </td>
+                                            <td class="form-control">
+                                                @Html.ActionLink("Edit", "Editstudent", "Home", new { id = item.Id,name = item.Name }, null);
+
+                                            </td>
+                                        </tr>
+                                    }
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
